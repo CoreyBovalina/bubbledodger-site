@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bubble Dodger</title>
+<meta name="description" content="Bubble Dodger: guide a small fish through a sea of glass bubbles. No ads, ever. iPhone, iPad, Mac, Apple TV and Android.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b2a4a">
+<!-- REPLACE-ME: once the app is live, add the Smart App Banner:
+<meta name="apple-itunes-app" content="app-id=REPLACE-ME"> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b2a4a; --deep:#061a30; --aqua:#3fd0e8; --aqua-soft:#bdf1f8;
+  --coral:#ff7a59; --gold:#ffc83d; --mint:#6fe3b4;
+  --bg:#eaf8fc; --bg2:#d4f1f8; --surface:#ffffff; --text:#0b2a4a; --muted:#3d5f7c;
+  --line:rgba(11,42,74,.12); --shadow:0 12px 32px rgba(11,42,74,.12);
+  --hero-a:#0d3a63; --hero-b:#0b2a4a; --hero-c:#06182c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#061a30; --bg2:#0a2644; --surface:#0f3055; --text:#e8f7fb; --muted:#9cc3d6;
+    --line:rgba(189,241,248,.14); --shadow:0 12px 32px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#061a30; --bg2:#0a2644; --surface:#0f3055; --text:#e8f7fb; --muted:#9cc3d6;
+  --line:rgba(189,241,248,.14); --shadow:0 12px 32px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:500 17px/1.6 Nunito,ui-rounded,system-ui,-apple-system,sans-serif}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{position:absolute;inset:0 0 auto 0;z-index:3}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;font-weight:900;font-size:19px}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+nav ul a{color:var(--aqua-soft);text-decoration:none;font-weight:700;font-size:15px}
+nav ul a:hover{color:#fff}
+.hero{position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(63,208,232,.35),transparent 60%),
+             linear-gradient(180deg,var(--hero-a),var(--hero-b) 55%,var(--hero-c));
+  padding:120px 0 120px;text-align:center}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;
+  background:var(--bg);clip-path:ellipse(75% 100% at 50% 100%)}
+.rays{position:absolute;inset:0;pointer-events:none;opacity:.18;
+  background:repeating-linear-gradient(100deg,transparent 0 60px,rgba(255,255,255,.5) 60px 90px,transparent 90px 170px);
+  mask-image:linear-gradient(180deg,#000,transparent 70%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%)}
+.bubble{position:absolute;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95) 0 8%,rgba(255,255,255,.18) 18%,rgba(63,208,232,.12) 60%,rgba(189,241,248,.5) 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(189,241,248,.55);animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(0)}to{transform:translateY(-720px)}}
+@media (prefers-reduced-motion: reduce){.bubble,.fish{animation:none!important}}
+h1{margin:0;font-weight:900;line-height:.95;letter-spacing:-.01em;font-size:clamp(52px,11vw,104px);
+  color:#fff;text-shadow:0 4px 0 #082038,0 10px 30px rgba(0,0,0,.35)}
+h1 .b{color:var(--aqua-soft)} h1 .d{color:var(--gold)}
+.tag{display:inline-block;margin:22px 0 10px;padding:8px 18px;border-radius:999px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);
+  font-weight:800;letter-spacing:.02em}
+.lede{max-width:560px;margin:14px auto 30px;color:#d6f3fa;font-size:19px}
+.fish{width:120px;height:auto;margin:6px auto 0;display:block;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative;z-index:2}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:18px;text-decoration:none;
+  font-weight:900;font-size:17px;box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .12s}
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.btn.apple{background:#fff;color:var(--navy)} .btn.play{background:var(--gold);color:#3a2600}
+.btn small{display:block;font-weight:700;font-size:11px;opacity:.7;line-height:1}
+section{padding:64px 0}
+h2{font-weight:900;font-size:clamp(28px,5vw,40px);margin:0 0 10px;line-height:1.1}
+.sub{color:var(--muted);margin:0 0 32px;max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:10px 0 4px;font-weight:900;font-size:20px}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.dot{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px}
+.aqua{background:rgba(63,208,232,.18)} .coral{background:rgba(255,122,89,.18)}
+.gold{background:rgba(255,200,61,.22)} .mint{background:rgba(111,227,180,.2)}
+.band{background:var(--bg2)}
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.promise li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:18px;padding:16px 18px;border:1px solid var(--line)}
+.promise b{display:block;font-weight:900}
+.promise span{color:var(--muted);font-size:15px}
+.tick{flex:none;width:28px;height:28px;border-radius:50%;background:var(--mint);color:#063b2a;display:grid;place-items:center;font-weight:900}
+.full{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.full ul{margin:0;padding-left:1.1em} .full li{margin:6px 0}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--gold);color:#3a2600;font-weight:900;font-size:13px}
+.platforms{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.platforms span{padding:8px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-weight:800;font-size:15px}
+footer{padding:40px 0 56px;color:var(--muted);font-size:15px;text-align:center}
+footer a{font-weight:800;margin:0 10px}
+@media (max-width:720px){
+  nav ul{gap:12px} nav ul li.hide-s{display:none}
+  .hero{padding:104px 0 100px}
+  .full{grid-template-columns:1fr}
+  section{padding:48px 0}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="./">
+    <svg width="30" height="22" viewBox="0 0 60 44" aria-hidden="true"><path d="M8 22c6-14 30-18 40 0-10 18-34 14-40 0z" fill="#ffc83d"/><path d="M8 22 0 12v20z" fill="#ff7a59"/><circle cx="40" cy="18" r="3.4" fill="#0b2a4a"/></svg>
+    Bubble Dodger</a>
+  <ul><li class="hide-s"><a href="#play">The game</a></li><li><a href="support.html">Support</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+</div></nav>
+
+<header class="hero">
+  <div class="rays"></div>
+  <div id="bubbles" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <svg class="fish" viewBox="0 0 120 80" aria-hidden="true">
+      <defs><linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd76a"/><stop offset="1" stop-color="#ff9f3d"/></linearGradient></defs>
+      <path d="M22 40 2 22v36z" fill="#ff7a59" stroke="#082038" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M18 40c10-26 62-32 86 0-24 32-76 26-86 0z" fill="url(#fb)" stroke="#082038" stroke-width="3.5"/>
+      <path d="M54 16c6-8 18-8 22 2" fill="#ff7a59" stroke="#082038" stroke-width="3"/>
+      <circle cx="82" cy="34" r="7" fill="#fff" stroke="#082038" stroke-width="2.5"/><circle cx="84" cy="34" r="3.6" fill="#082038"/>
+      <path d="M40 26c8-4 22-5 30-2" stroke="#fff" stroke-opacity=".6" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <h1><span class="b">Bubble</span><br><span class="d">Dodger</span></h1>
+    <div class="tag">Swim fast. Stay unpopped.</div>
+    <p class="lede">One small fish. A sea full of glass bubbles. Weave, dodge, snap up shrimp and see how far one brave swim can take you.</p>
+    <div class="cta">
+      <!-- REPLACE-ME: store links -->
+      <a class="btn apple" href="https://apps.apple.com/app/idREPLACE-ME"><span><small>Download on the</small>App Store</span></a>
+      <a class="btn play" href="https://play.google.com/store/apps/details?id=com.bubbledodger"><span><small>Get it on</small>Google Play</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="play"><div class="wrap">
+  <h2>Learn it in one swipe.</h2>
+  <p class="sub">Drag to swim. Bubbles rise from the sea floor; touch one and the run is over. Every 300 points the tide climbs and the bubbles come faster.</p>
+  <div class="grid">
+    <div class="card"><div class="dot coral">🦐</div><h3>Snap up shrimp</h3><p>Catch them in quick succession to build a streak worth up to ×5.</p></div>
+    <div class="card"><div class="dot gold">⚡</div><h3>Power up</h3><p>Bank a speed boost, raise a shield, slow the sea or clear it with a bomb.</p></div>
+    <div class="card"><div class="dot aqua">🌊</div><h3>Four tides</h3><p>Easy to Extreme, each with its own top-10 table and its own original music.</p></div>
+    <div class="card"><div class="dot mint">🎉</div><h3>Beat your best</h3><p>A new record brings confetti, and there's always another score to chase.</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap full">
+  <div>
+    <span class="pill">Full Game</span>
+    <h2 style="margin-top:12px">One purchase. That's it.</h2>
+    <p class="sub" style="margin-bottom:14px">Easy and Medium are yours to keep, free. A single optional unlock adds:</p>
+    <ul>
+      <li><b>Hard and Extreme</b>, for the bravest swimmers</li>
+      <li><b>The Shop</b>: 10 fish to collect and three sparkly trails</li>
+      <li><b>Fish Creator</b>: paint your own fish, body and fins</li>
+      <li><b>Sand dollars</b> earned at the end of every run</li>
+      <li><b>Pearls</b>: a rare find that saves one run</li>
+    </ul>
+  </div>
+  <div>
+    <div class="platforms"><span>iPhone</span><span>iPad</span><span>Mac</span><span>Apple TV</span><span>Android</span></div>
+    <p class="sub" style="margin-top:16px">On Apple devices, one purchase covers iPhone, iPad, Mac and Apple TV. Play with touch, keyboard, a game controller or the Siri Remote.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>A note for grown-ups</h2>
+  <p class="sub">We made Bubble Dodger the way we'd want a game in our own family to work.</p>
+  <ul class="promise">
+    <li><span class="tick">✓</span><div><b>No ads. Ever.</b><span>Not now, not in an update.</span></div></li>
+    <li><span class="tick">✓</span><div><b>Nothing to grind for money</b><span>No coins, gems or loot boxes for sale. Sand dollars are earned only by playing.</span></div></li>
+    <li><span class="tick">✓</span><div><b>A grown-up check</b><span>The purchase screen asks for a grown-up first. Ask to Buy and Family Link approvals work.</span></div></li>
+    <li><span class="tick">✓</span><div><b>No data collected</b><span>No accounts, no chat, no tracking. <a href="privacy.html">Read the privacy policy</a>.</span></div></li>
+  </ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="mailto:bubbledodger.help@gmail.com">Contact</a></p>
+  <p>© 2026 CobGames. Apple, iPhone, iPad, Mac and Apple TV are trademarks of Apple Inc. Google Play is a trademark of Google LLC.</p>
+</div></footer>
+
+<script>
+(function(){
+  var host=document.getElementById('bubbles'); if(!host) return;
+  host.style.cssText='position:absolute;inset:0;z-index:1;pointer-events:none';
+  for(var i=0;i<18;i++){
+    var b=document.createElement('span'); b.className='bubble';
+    var s=10+Math.random()*38;
+    b.style.width=b.style.height=s+'px';
+    b.style.left=(Math.random()*100)+'%';
+    b.style.top=(100+Math.random()*40)+'%';
+    b.style.animationDuration=(9+Math.random()*10)+'s';
+    b.style.animationDelay=(-Math.random()*18)+'s';
+    host.appendChild(b);
+  }
+})();
+</script>
+</body>
+</html>

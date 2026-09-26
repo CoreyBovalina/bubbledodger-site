@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bubble Dodger Support</title>
+<meta name="description" content="Help with Bubble Dodger: restoring the Full Game, the grown-up check, Ask to Buy, controllers and more.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b2a4a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b2a4a; --aqua:#3fd0e8; --aqua-soft:#bdf1f8; --coral:#ff7a59; --gold:#ffc83d; --mint:#6fe3b4;
+  --bg:#eaf8fc; --surface:#ffffff; --text:#0b2a4a; --muted:#3d5f7c; --line:rgba(11,42,74,.12);
+  --link:#0a6f8a; --kbd:#e2f2f8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#061a30; --surface:#0f3055; --text:#e8f7fb; --muted:#9cc3d6; --line:rgba(189,241,248,.14);
+    --link:#7fe3f3; --kbd:#16406b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#061a30; --surface:#0f3055; --text:#e8f7fb; --muted:#9cc3d6; --line:rgba(189,241,248,.14);
+  --link:#7fe3f3; --kbd:#16406b;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:500 17px/1.65 Nunito,ui-rounded,system-ui,-apple-system,sans-serif}
+a{color:var(--link);font-weight:700}
+.top{background:linear-gradient(180deg,#0d3a63,#0b2a4a 70%,#082038);color:#fff;padding:0 0 64px;position:relative}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:40px;background:var(--bg);clip-path:ellipse(75% 100% at 50% 100%)}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;font-weight:900;font-size:18px}
+nav .links a{color:var(--aqua-soft);text-decoration:none;margin-left:16px;font-size:15px}
+h1{font-weight:900;font-size:clamp(34px,7vw,52px);line-height:1.05;margin:26px 0 8px}
+.top p{color:#cfeef7;margin:0}
+.contact{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:12px 20px;border-radius:16px;background:var(--gold);color:#3a2600;text-decoration:none;font-weight:900;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+main{padding:24px 0 20px}
+h2{font-weight:900;font-size:22px;margin:36px 0 12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:16px 52px 16px 20px;font-weight:800;font-size:18px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;
+  background:var(--aqua);color:#06243f;display:grid;place-items:center;font-weight:900;line-height:1}
+details[open] summary::after{content:"–"}
+details .a{padding:0 20px 16px}
+details .a p{margin:0 0 10px}
+details ul,details ol{margin:0 0 10px;padding-left:1.2em} details li{margin:4px 0}
+kbd{font:800 14px Nunito,system-ui,sans-serif;background:var(--kbd);border:1px solid var(--line);border-bottom-width:3px;border-radius:7px;padding:1px 7px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:900}
+.muted{color:var(--muted)}
+footer{padding:32px 0 56px;color:var(--muted);font-size:15px;text-align:center}
+footer a{margin:0 10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <nav>
+    <a class="brand" href="./"><svg width="30" height="22" viewBox="0 0 60 44" aria-hidden="true"><path d="M8 22c6-14 30-18 40 0-10 18-34 14-40 0z" fill="#ffc83d"/><path d="M8 22 0 12v20z" fill="#ff7a59"/><circle cx="40" cy="18" r="3.4" fill="#0b2a4a"/></svg>Bubble Dodger</a>
+    <span class="links"><a href="support.html" aria-current="page">Support</a><a href="privacy.html">Privacy</a></span>
+  </nav>
+  <h1>How can we help?</h1>
+  <p>Answers to the most common questions. Still stuck? We read every email.</p>
+  <a class="contact" href="mailto:bubbledodger.help@gmail.com?subject=Bubble%20Dodger%20support">✉️ bubbledodger.help@gmail.com</a>
+</div></header>
+
+<main class="wrap">
+
+<h2>The Full Game</h2>
+
+<details open><summary>How do I restore my Full Game purchase?</summary><div class="a">
+  <p>On a new device, or after reinstalling:</p>
+  <ol>
+    <li>Open Bubble Dodger and tap the <b>Shop</b> tile (it shows a padlock), or tap <b>Play</b> and then the locked <b>Hard</b> or <b>Extreme</b> tile.</li>
+    <li>Tap <b>Restore Purchase</b>. No grown-up check is needed to restore.</li>
+  </ol>
+  <p>Make sure you're signed in with the same <b>Apple Account</b> or <b>Google account</b> that made the purchase. The game also checks for your purchase every time it starts, so it often restores itself.</p>
+  <p class="muted">On Apple devices, one purchase unlocks the Full Game on iPhone, iPad, Mac and Apple TV. Purchases can't move between Apple and Google stores.</p>
+</div></details>
+
+<details><summary>What does the Full Game include?</summary><div class="a">
+  <p>A single, one-time purchase. There are no subscriptions and nothing else to buy. It adds:</p>
+  <ul>
+    <li><b>Hard</b> and <b>Extreme</b> difficulties</li>
+    <li><b>The Shop</b>: 10 fish and three trails, bought with sand dollars you earn by playing</li>
+    <li><b>Fish Creator</b>: choose your own colours for your fish's body and fins</li>
+    <li><b>Sand dollars</b> at the end of every run</li>
+    <li><b>Pearls</b>: a rare pickup that gives you one second chance per run</li>
+  </ul>
+  <p>Easy and Medium, every power-up and your high score tables are free, for good.</p>
+</div></details>
+
+<details><summary>How does the grown-up check work?</summary><div class="a">
+  <p>Before the purchase screen opens, the game shows <b>"Ask a grown-up"</b> with a number pad. It spells out three numbers in words, for example <i>"seven, two, nine"</i>, and you tap <kbd>7</kbd> <kbd>2</kbd> <kbd>9</kbd>. A wrong answer shakes the panel and deals new words. Tap <b>Cancel</b> to go back.</p>
+  <p>It's a speed bump that stops little ones wandering into a purchase. Your App Store or Google Play password, Face ID or fingerprint, and any purchase approvals still apply after it.</p>
+</div></details>
+
+<details><summary>My child asked to buy it. What is "Waiting for a grown-up"?</summary><div class="a">
+  <p>If your family uses <b>Ask to Buy</b> (Apple Family Sharing) or <b>purchase approvals</b> in Google Family Link, the request goes to the parent or guardian, and the game shows <b>"Waiting for a grown-up to approve it"</b>.</p>
+  <p>Once it's approved, the Full Game unlocks automatically. Open the game again if it doesn't appear straight away. If the request is declined, nothing is charged and the free game carries on as before.</p>
+</div></details>
+
+<details><summary>I was charged but the game is still locked</summary><div class="a">
+  <ol>
+    <li>Check your internet connection, then close and reopen the game.</li>
+    <li>Tap <b>Restore Purchase</b> on the Full Game screen.</li>
+    <li>Check you're signed in to the store account that made the purchase.</li>
+  </ol>
+  <p>Still locked? Email us with your device type and the date of purchase (no card details, please). For refunds, contact <a href="https://reportaproblem.apple.com">Apple</a> or <a href="https://support.google.com/googleplay/workflow/9813244">Google Play</a> directly; they handle all payments.</p>
+</div></details>
+
+<h2>Playing</h2>
+
+<details><summary>How do I play?</summary><div class="a">
+  <p>Drag anywhere to swim. Bubbles rise from the sea floor, and touching one ends the run. Stay alive to score, grab shrimp for bonus points (catch several quickly for up to a ×5 streak), and pick up power-ups:</p>
+  <ul>
+    <li><b>Boost bolt:</b> banks up to 10 seconds of speed. Hold the gold boost button to use it.</li>
+    <li><b>Shield:</b> absorbs one hit.</li>
+    <li><b>Slow-mo:</b> slows everything for five seconds.</li>
+    <li><b>Bomb:</b> clears nearby bubbles.</li>
+  </ul>
+  <p>You can replay the tutorial any time from <b>Settings → Tutorial &amp; Help</b>.</p>
+</div></details>
+
+<details><summary>Can I use a game controller or keyboard?</summary><div class="a">
+  <div class="tablewrap"><table>
+    <tr><th></th><th>Swim</th><th>Boost (hold)</th><th>Pause</th></tr>
+    <tr><td><b>Game controller</b><br><span class="muted">iPhone, iPad, Mac, Apple TV</span></td><td>Left stick or D-pad</td><td><kbd>A</kbd> or right trigger</td><td>Menu button</td></tr>
+    <tr><td><b>Mac keyboard</b></td><td>Arrow keys or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></td><td><kbd>Space</kbd></td><td><kbd>Esc</kbd></td></tr>
+    <tr><td><b>iPad keyboard</b></td><td>Arrow keys</td><td><kbd>Space</kbd></td><td><kbd>Esc</kbd></td></tr>
+    <tr><td><b>Siri Remote</b></td><td>Swipe or press the clickpad edges</td><td>Press the clickpad</td><td>Play/Pause</td></tr>
+  </table></div>
+  <p class="muted">Controllers pair in your device's Bluetooth settings (Xbox, PlayStation and MFi controllers work). On Android, the game is touch-only for now; you can move the joystick to the left or right side from the pause menu.</p>
+</div></details>
+
+<details><summary>Can I turn the music or sound effects off?</summary><div class="a">
+  <p>Yes: <b>Settings</b> on the main menu has separate <b>Music</b> and <b>Sound FX</b> switches. There's also a mute button during play. All the music is made by the game itself, so it may take a few seconds to start the first time you open it.</p>
+</div></details>
+
+<details><summary>Where are my high scores? Do they sync?</summary><div class="a">
+  <p>Each difficulty keeps its own top-10 table under <b>High Scores</b>. On iPhone and iPad, scores sync between your devices through iCloud. With Game Center on, your best runs also go to the Bubble Dodger leaderboard. On Android, scores and progress come back when you restore a device backup to the same Google account.</p>
+</div></details>
+
+<details><summary>Can I make the game calmer to look at?</summary><div class="a">
+  <p>Yes. Turn on <b>Reduce Motion</b> (Apple: Settings → Accessibility → Motion) or <b>Remove animations</b> (Android: Settings → Accessibility). Bubble Dodger then drops screen shake, most flashes, floating buttons and sliding screen transitions, while gameplay stays the same.</p>
+</div></details>
+
+<h2>Privacy &amp; safety</h2>
+
+<details><summary>Are there ads? Does the game collect data?</summary><div class="a">
+  <p>No ads, ever. No analytics, no accounts, no chat, and we collect no personal data. The details are in our <a href="privacy.html">privacy policy</a>.</p>
+</div></details>
+
+<h2>Still need help?</h2>
+<p>Email <a href="mailto:bubbledodger.help@gmail.com?subject=Bubble%20Dodger%20support">bubbledodger.help@gmail.com</a> with your device (for example "iPad Air, iPadOS 26") and what happened. We usually reply within three business days. Please don't include payment or personal details about a child.</p>
+</main>
+
+<footer><div class="wrap">
+  <p><a href="./">Home</a><a href="privacy.html">Privacy</a><a href="mailto:bubbledodger.help@gmail.com">Contact</a></p>
+  <p>© 2026 CobGames</p>
+</div></footer>
+</body>
+</html>
